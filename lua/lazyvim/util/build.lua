@@ -34,12 +34,6 @@ function M.keymaps()
 
   group = "General"
   dofile(root .. "/lua/lazyvim/config/keymaps.lua")
-  group = "LSP"
-  local lsp = dofile(root .. "/lua/lazyvim/plugins/lsp/keymaps.lua")
-  for _, keys in ipairs(lsp.get()) do
-    map(keys.mode or "n", keys[1], keys[2], keys)
-  end
-  vim.keymap.set = keymap_set
 
   group = "Plugins"
 
@@ -218,10 +212,6 @@ require("lazy").setup({
   Docs.save({
     examples = Util.read_file(examples):gsub("^[^\n]+\n[^\n]+\n[^\n]+\n", ""),
   }, docs .. "/configuration/examples.md")
-
-  Docs.save({
-    plugins = M.plugins("lsp/init.lua"),
-  }, docs .. "/plugins/lsp.md")
 
   for _, p in ipairs({ "coding", "colorscheme", "editor", "treesitter", "ui", "util" }) do
     Docs.save({
